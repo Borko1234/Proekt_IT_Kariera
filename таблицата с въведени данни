@@ -1,0 +1,113 @@
+CREATE SCHEMA IF NOT EXISTS MARVEL;
+USE MARVEL;
+CREATE TABLE IF NOT EXISTS MARVEL_HEROES(
+HERO_ID INT NOT NULL PRIMARY KEY,
+HERO_NAME VARCHAR(50) NOT NULL,
+HERO_REAL_NAME VARCHAR(50) NOT NULL,
+HERO_ORIGIN VARCHAR(50) NOT NULL,
+HERO_FIRST_APPEARENCE YEAR NOT NULL
+);
+CREATE TABLE IF NOT EXISTS MARVEL_MOVIES(
+MOVIE_ID INT NOT NULL PRIMARY KEY,
+MOVIE_TITLE VARCHAR(50) NOT NULL,
+MOVIE_RELEASE_DATE DATE NOT NULL,
+MOVIE_RATING INT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS MARVEL_HERO_MOVIES(
+HERO_ID INT NOT NULL ,
+MOVIE_ID INT NOT NULL ,
+PRIMARY KEY(HERO_ID,MOVIE_ID),
+FOREIGN KEY (HERO_ID)
+REFERENCES MARVEL_HEROES(HERO_ID),
+FOREIGN KEY (MOVIE_ID)
+REFERENCES MARVEL_MOVIES(MOVIE_ID)
+);
+CREATE TABLE IF NOT EXISTS MARVEL_HERO_TEAMS(
+TEAM_ID INT NOT NULL PRIMARY KEY,
+TEAM_NAME VARCHAR(50) NOT NULL,
+TEAM_LEADER_NAME VARCHAR(50) NOT NULL,
+TEAM_FORMATION_DATE DATE NOT NULL
+);
+CREATE TABLE IF NOT EXISTS MARVEL_HERO_TEAMS_LEADERS(
+TEAM_ID INT NOT NULL,
+HERO_ID INT NOT NULL,
+PRIMARY KEY(TEAM_ID,HERO_ID),
+FOREIGN KEY (TEAM_ID)
+REFERENCES MARVEL_HERO_TEAMS(TEAM_ID),
+FOREIGN KEY(HERO_ID)
+REFERENCES MARVEL_HEROES(HERO_ID)
+);
+
+INSERT INTO MARVEL_HEROES (HERO_ID, HERO_NAME, HERO_REAL_NAME, HERO_ORIGIN, HERO_FIRST_APPEARENCE)
+VALUES
+(1, 'Spider-Man', 'Peter Parker', 'Bitten by radioactive spider', 1962),
+(2, 'Iron Man', 'Tony Stark', 'Inventor', 1963),
+(3, 'Captain America', 'Steve Rogers', 'Super Soldier', 1941),
+(4, 'Thor', 'Thor Odinson', 'Asgardian God', 1962),
+(5, 'Black Widow', 'Natasha Romanoff', 'Soviet Spy', 1964),
+(6, 'Hulk', 'Bruce Banner', 'Gamma radiation experiment', 1962),
+(7, 'Black Panther', 'Challa', 'King of Wakanda', 1966),
+(8, 'Doctor Strange', 'Stephen Strange', 'Neurosurgeon turned Sorcerer', 1963),
+(9, 'Ant-Man', 'Scott Lang', 'Thief turned hero', 1962),
+(10, 'Wolverine', 'Logan', 'Mutant with healing factor', 1974);
+
+INSERT INTO MARVEL_MOVIES (MOVIE_ID, MOVIE_TITLE, MOVIE_RELEASE_DATE, MOVIE_RATING)
+VALUES
+(1, 'Spider-Man: No Way Home', '2021-12-17', 92),
+(2, 'Avengers: Endgame', '2019-04-26', 94),
+(3, 'Black Panther', '2018-02-16', 96),
+(4, 'Iron Man', '2008-05-02', 94),
+(5, 'Captain America: The First Avenger', '2011-07-22', 80),
+(6, 'Thor: Ragnarok', '2017-11-03', 93),
+(7, 'Doctor Strange', '2016-10-25', 89),
+(8, 'Ant-Man', '2015-07-17', 83),
+(9, 'Avengers: Infinity War', '2018-04-27', 85),
+(10, 'Guardians of the Galaxy', '2014-08-01', 91),
+(11, 'Iron Man 2', '2010-05-07', 73),
+(12, 'Thor: The Dark World', '2013-11-08', 66),
+(13, 'Captain America: Civil War', '2016-05-06', 91),
+(14, 'Black Widow', '2021-07-09', 79),
+(15, 'Shang-Chi and the Legend of the Ten Rings', '2021-09-03', 91),
+(16, 'Spider-Man: Homecoming', '2017-07-07', 92),
+(17, 'Avengers: Age of Ultron', '2015-05-01', 76),
+(18, 'Guardians of the Galaxy Vol. 2', '2017-05-05', 85),
+(19, 'Doctor Strange in the Multiverse of Madness', '2022-05-06', 74),
+(20, 'Spider-Man: Far From Home', '2019-07-02', 90),
+(21, 'The Avengers', '2012-05-04', 91),
+(22, 'Black Panther: Wakanda Forever', '2022-11-11', 84),
+(23, 'Thor: Love and Thunder', '2022-07-08', 65),
+(24, 'Captain Marvel', '2019-03-08', 79),
+(25, 'Eternals', '2021-11-05', 47),
+(26, 'Ant-Man and the Wasp', '2018-07-06', 88),
+(27, 'The Incredible Hulk', '2008-06-13', 67),
+(28, 'Iron Man 3', '2013-05-03', 79),
+(29, 'Spider-Man: Into the Spider-Verse', '2018-12-14', 97),
+(30, 'Deadpool', '2016-02-12', 85);
+
+INSERT INTO MARVEL_HERO_TEAMS (TEAM_ID, TEAM_NAME, TEAM_LEADER_NAME, TEAM_FORMATION_DATE)
+VALUES
+(1, 'Avengers', 'Captain America', '1963-05-01'),
+(2, 'X-Men', 'Wolverine', '1963-09-01'),
+(3, 'Fantastic Four', 'Invisible Woman', '1961-11-01'),
+(4, 'Guardians of the Galaxy', 'Star-Lord', '2014-08-01'),
+(5, 'Defenders', 'Doctor Strange', '1971-01-01');
+
+
+-- Вмъкваме героите, които ще участват във филмите
+INSERT INTO MARVEL_HERO_MOVIES (HERO_ID, MOVIE_ID)
+VALUES
+(1, 1), (2, 2), (3, 5), (4, 6), (5, 2),
+(6, 9), (7, 3), (8, 7), (9, 8), (10, 4),
+(1, 16), (2, 4), (3, 13), (4, 12), (5, 14),
+(6, 10), (7, 22), (8, 19), (9, 28), (10, 18),
+(1, 20), (2, 11), (3, 17), (4, 21), (5, 24),
+(6, 27), (7, 23), (8, 25), (9, 26), (10, 29);
+
+-- Вмъкване на отбори
+INSERT INTO MARVEL_HERO_TEAMS_LEADERS (TEAM_ID, HERO_ID)
+VALUES
+(1, 3),  -- Captain America
+(2, 10), -- Wolverine
+(3, 1),  -- Invisible Woman
+(4, 9),  -- Star-Lord
+(5, 8);  -- Doctor Strange
