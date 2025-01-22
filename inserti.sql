@@ -230,71 +230,29 @@ INSERT INTO MARVEL_HERO_MOVIES (HERO_ID, MOVIE_ID) VALUES
 (70, 73);
 
 
-INSERT INTO MARVEL_HERO_TEAMS (TEAM_ID, TEAM_NAME, TEAM_LEADER_NAME, TEAM_FORMATION_DATE) VALUES
-(1, 'Avengers', 'Steve Rogers', '1963-05-01'),
-(2, 'X-Men', 'Charles Xavier', '1963-09-01'),
-(3, 'Fantastic Four', 'Reed Richards', '1961-11-01'),
-(4, 'Guardians of the Galaxy', 'Peter Quill', '2008-05-01'),
-(5, 'Defenders', 'Doctor Strange', '1971-12-01'),
-(6, 'Inhumans', 'Black Bolt', '1965-03-01'),
-(7, 'Eternals', 'Ikaris', '1976-07-01'),
-(8, 'Alpha Flight', 'Guardian', '1979-08-01'),
-(9, 'Thunderbolts', 'Baron Zemo', '1997-04-01'),
-(10, 'Young Avengers', 'Iron Lad', '2005-04-01'),
-(11, 'Runaways', 'Nico Minoru', '2003-07-01'),
-(12, 'New Mutants', 'Cannonball', '1982-09-01'),
-(13, 'X-Force', 'Cable', '1991-08-01'),
-(14, 'Great Lakes Avengers', 'Mr. Immortal', '1989-06-01'),
-(15, 'Sinister Six', 'Doctor Octopus', '1964-01-01'),
-(16, 'A-Force', 'She-Hulk', '2015-05-01'),
-(17, 'Champions', 'Hercules', '1975-10-01'),
-(18, 'Midnight Sons', 'Ghost Rider', '1992-12-01'),
-(19, 'Excalibur', 'Captain Britain', '1988-10-01'),
-(20, 'Starjammers', 'Corsair', '1977-04-01'),
-(21, 'Dark Avengers', 'Norman Osborn', '2009-03-01'),
-(22, 'Secret Warriors', 'Nick Fury', '2009-06-01'),
-(23, 'Illuminati', 'Doctor Strange', '2005-09-01'),
-(24, 'Nextwave', 'Monica Rambeau', '2006-02-01'),
-(25, 'Agents of Atlas', 'Jimmy Woo', '1958-10-01'),
-(26, 'Heroes for Hire', 'Luke Cage', '1978-06-01'),
-(27, 'Hellfire Club', 'Emma Frost', '1980-02-01'),
-(28, 'Future Foundation', 'Reed Richards', '2011-03-01'),
-(29, 'Winter Guard', 'Red Guardian', '1998-09-01'),
-(30, 'Howling Commandos', 'Nick Fury', '1963-05-01');
+INSERT INTO MARVEL_HERO_TEAMS (TEAM_ID, TEAM_NAME, TEAM_FORMATION_DATE) VALUES
+(1, 'Avengers', '1963-09-01'),
+(2, 'X-Men', '1963-09-01'),
+(3, 'Defenders', '1971-12-01'),
+(4, 'Fantastic Four', '1961-11-01'),
+(5, 'Wakandan Forces', '1966-07-01'),
+(6, 'Guardians of the Galaxy', '1969-01-01'),
+(7, 'Young Avengers', '2005-04-01');
 
 
--- Свързване на отбори и лидери
+
 INSERT INTO MARVEL_HERO_TEAMS_LEADERS (TEAM_ID, HERO_ID) VALUES
+(1, 1), 
 (1, 2), 
 (2, 15),
-(3, 3), 
-(4, 28), 
-(5, 8), 
-(6, 6),
-(7, 18),
-(8, 51), 
-(9, 19), 
-(10, 32), 
-(11, 54), 
-(12, 50), 
-(13, 75), 
-(14, 45),
-(15, 57), 
-(16, 24), 
-(17, 37), 
-(18, 39), 
-(19, 19), 
-(20, 60), 
-(21, 21),
-(22, 22), 
-(23, 8), 
-(24, 33), 
-(25, 44),
-(26, 20), 
-(27, 63), 
-(28, 3), 
-(29, 29),
-(30, 22); 
+(2, 14), 
+(3, 8),
+(3, 17), 
+(4, 18), 
+(5, 6),
+(6, 41), 
+(7, 32); 
+
 
 
 INSERT INTO MARVEL_HERO_POWERS (HERO_ID, POWER_NAME) VALUES
@@ -585,4 +543,3 @@ INSERT INTO MARVEL_MOVIE_PREMIERE_SCREENINGS (MOVIE_ID, SCREENING_DATE, DAILY_BO
 (92, '2025-05-31', 99000000.00),
 (93, '2023-01-29', 97000000.00),
 (93, '2023-01-30', 100000000.00);
-
