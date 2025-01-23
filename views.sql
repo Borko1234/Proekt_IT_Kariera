@@ -3,7 +3,7 @@ SELECT
     M.MOVIE_ID AS "ID на филма",
     M.MOVIE_TITLE AS "Име на филма",
     M.MOVIE_BUDGET AS "Бюджет",
-    UDF_GET_MOVIES_PROFIT_DAY(M.MOVIE_ID) AS "Ден с приходи над бюджета"
+    UDF_GET_MOVIE_PROFIT_DAY(M.MOVIE_ID) AS "Ден с приходи над бюджета"
 FROM 
     MARVEL_MOVIES M
 WHERE 
