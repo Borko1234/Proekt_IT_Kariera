@@ -80,7 +80,8 @@ INSERT INTO MARVEL_HEROES (HERO_ID, HERO_NAME, HERO_REAL_NAME, HERO_ORIGIN, HERO
 (77, 'Doop', 'Doop', 'X-Force', 2001, 'Earth', 40),
 (78, 'Marrow', 'Sarah', 'X-Men Comics', 1994, 'Earth', 30),
 (79, 'Chamber', 'Jonothon Starsmore', 'X-Men Comics', 1994, 'Earth', 30),
-(80, 'Skin', 'Angelo Espinosa', 'X-Men Comics', 1994, 'Earth', 28);
+(80, 'Skin', 'Angelo Espinosa', 'X-Men Comics', 1994, 'Earth', 28),
+(81, 'Nick Fury', 'Nicholas Joseph Fury', 'Marvel Comics', 1963, 'Earth', 70);
 
 
 INSERT INTO MARVEL_MOVIES (MOVIE_ID, MOVIE_TITLE, MOVIE_RELEASE_DATE, MOVIE_RATING, MOVIE_BUDGET, MOVIE_BOX_OFFICE) VALUES
@@ -237,7 +238,10 @@ INSERT INTO MARVEL_HERO_TEAMS (TEAM_ID, TEAM_NAME, TEAM_FORMATION_DATE) VALUES
 (4, 'Fantastic Four', '1961-11-01'),
 (5, 'Wakandan Forces', '1966-07-01'),
 (6, 'Guardians of the Galaxy', '1969-01-01'),
-(7, 'Young Avengers', '2005-04-01');
+(7, 'Young Avengers', '2005-04-01'),
+(8, 'Secret Warriors', '2009-03-01'), 
+(9, 'Illuminati', '2005-06-01'),     
+(10, 'X-Force', '1991-08-01');    
 
 
 
@@ -251,7 +255,11 @@ INSERT INTO MARVEL_HERO_TEAMS_LEADERS (TEAM_ID, HERO_ID) VALUES
 (4, 18), 
 (5, 6),
 (6, 41), 
-(7, 32); 
+(7, 32),
+(8, 81),  
+(9, 8),  
+(10, 12); 
+
 
 
 
