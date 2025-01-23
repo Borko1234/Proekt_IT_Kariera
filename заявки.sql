@@ -9,6 +9,29 @@ WHERE
 
 
 SELECT 
+    ht.TEAM_NAME AS 'Име на отбора',
+    h.HERO_NAME AS 'Лидер на отбора'
+FROM 
+    MARVEL_HERO_TEAMS ht
+JOIN 
+    MARVEL_HERO_TEAMS_LEADERS htl ON ht.TEAM_ID = htl.TEAM_ID
+JOIN 
+    MARVEL_HEROES h ON htl.HERO_ID = h.HERO_ID;
+
+
+
+SELECT 
+    h.HERO_NAME AS 'Име на героя',
+    m.MOVIE_TITLE AS 'Име на филма'
+FROM 
+    MARVEL_HERO_MOVIES hm
+JOIN 
+    MARVEL_HEROES h ON hm.HERO_ID = h.HERO_ID
+JOIN 
+    MARVEL_MOVIES m ON hm.MOVIE_ID = m.MOVIE_ID;
+    
+    
+SELECT 
     HERO_NAME AS 'Име на героя',
     HERO_REAL_NAME AS 'Истинско име на героя',
     HERO_AGE AS 'Възраст на героя'
