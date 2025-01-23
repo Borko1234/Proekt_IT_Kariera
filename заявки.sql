@@ -1,7 +1,7 @@
 USE MARVEL;
 SELECT 
-    MOVIE_TITLE AS "Име на филма",
-    CONCAT(MOVIE_RATING, "/10") AS "Рейтинг"
+    MOVIE_TITLE AS 'Име на филма',
+    CONCAT(MOVIE_RATING, "/10") AS 'Рейтинг'
 FROM 
     MARVEL_MOVIES
 WHERE 
@@ -9,9 +9,9 @@ WHERE
 
 
 SELECT 
-    HERO_NAME AS "Име на героя",
-    HERO_REAL_NAME AS "Истинско име на героя",
-    HERO_AGE AS "Възраст на героя"
+    HERO_NAME AS 'Име на героя',
+    HERO_REAL_NAME AS 'Истинско име на героя',
+    HERO_AGE AS 'Възраст на героя'
 FROM 
     MARVEL_HEROES
 ORDER BY 
@@ -19,7 +19,7 @@ ORDER BY
 
 
 SELECT 
-    AVG(HERO_AGE) AS "Средна възраст на героите от Земята"
+    ROUND(AVG(HERO_AGE),0) AS 'Средна възраст на героите от Земята'
 FROM 
     MARVEL_HEROES
 WHERE 
@@ -27,8 +27,8 @@ WHERE
 
 
 SELECT 
-    MOVIE_TITLE AS "Име на филма",
-    CONCAT(MOVIE_BOX_OFFICE, "$") AS "Приходи"
+    MOVIE_TITLE AS 'Име на филма',
+    CONCAT(MOVIE_BOX_OFFICE, '$') AS 'Приходи'
 FROM 
     MARVEL_MOVIES
 WHERE 
@@ -36,8 +36,8 @@ WHERE
 
 
 SELECT 
-    h.HERO_NAME AS "Име на героя",
-    COUNT(hm.MOVIE_ID) AS "Брой филми"
+    h.HERO_NAME AS 'Име на героя',
+    COUNT(hm.MOVIE_ID) AS 'Брой филми'
 FROM 
     MARVEL_HEROES h
 JOIN 
@@ -50,9 +50,9 @@ LIMIT 5;
 
 
 SELECT /*ВЗИМА САМО ПО ЕДИН ГЕРОЙ ЗАЩОТО СМЕ СЛОЖИЛИ САМО ПО ЕДИН В ТАБЛИЦАТА MARVEL_PLANETS_GALAXIES*/
-    pg.PLANET_NAME AS "Име на планетата",
-    pg.GALAXY_NAME AS "Име на галактиката",
-    GROUP_CONCAT(h.HERO_NAME SEPARATOR ', ') AS "Герои от тази планета"
+    pg.PLANET_NAME AS 'Име на планетата',
+    pg.GALAXY_NAME AS 'Име на галактиката',
+    h.HERO_NAME AS 'Герои от тази планета'
 FROM 
     MARVEL_PLANETS_GALAXIES pg
 JOIN 
@@ -60,3 +60,55 @@ JOIN
 GROUP BY 
     pg.PLANET_NAME, 
     pg.GALAXY_NAME;
+    
+
+SELECT 
+    YEAR(MOVIE_RELEASE_DATE) AS 'Година',
+    CONCAT(ROUND(AVG(MOVIE_BUDGET),2),'$') AS 'Среден бюджет'
+FROM 
+    MARVEL_MOVIES
+GROUP BY 
+    YEAR(MOVIE_RELEASE_DATE)
+ORDER BY 
+    YEAR(MOVIE_RELEASE_DATE) ASC;
+
+
+SELECT 
+    h.HERO_NAME AS 'Име на героя',
+    h.HERO_AGE AS 'Възраст',
+    m.MOVIE_TITLE AS 'Филм',
+    m.MOVIE_RELEASE_DATE AS 'Дата на премиера'
+FROM 
+    MARVEL_HEROES h
+JOIN 
+    MARVEL_HERO_MOVIES hm ON h.HERO_ID = hm.HERO_ID
+JOIN 
+    MARVEL_MOVIES m ON hm.MOVIE_ID = m.MOVIE_ID
+WHERE 
+    YEAR(m.MOVIE_RELEASE_DATE) > 2015
+ORDER BY 
+    h.HERO_AGE DESC;
+    
+
+SELECT 
+    m.MOVIE_TITLE AS 'Име на филма',
+    s.SCREENING_DATE AS 'Дата на прожекцията',
+    ROUND(s.DAILY_BOX_OFFICE, 2) AS 'Дневни приходи ($)'
+FROM 
+    MARVEL_MOVIE_PREMIERE_SCREENINGS s
+JOIN 
+    MARVEL_MOVIES m ON s.MOVIE_ID = m.MOVIE_ID
+ORDER BY 
+    s.DAILY_BOX_OFFICE DESC
+LIMIT 10;
+
+
+SELECT 
+    YEAR(s.SCREENING_DATE) AS 'Година',
+    ROUND(AVG(s.DAILY_BOX_OFFICE), 2) AS 'Среден дневен приход ($)'
+FROM 
+    MARVEL_MOVIE_PREMIERE_SCREENINGS s
+GROUP BY 
+    YEAR(s.SCREENING_DATE)
+ORDER BY 
+    'Година' ASC;
